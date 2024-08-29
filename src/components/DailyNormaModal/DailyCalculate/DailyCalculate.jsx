@@ -1,25 +1,28 @@
 import style from './DailyCalculate.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const DailyCalculate = ({}) => {
-  const [weight, setWeight] = useState(0);
-  const [activity, setActivity] = useState(0);
+const DailyCalculate = () => {
+  const [weight, setWeight] = useState();
+  const [activity, setActivity] = useState();
   const [gender, setGender] = useState('Woman');
 
   const calculate = () => {
-    if (true) {
-      return weight * 0.03 + activity * 0.4;
+    const M = +weight || 0;
+    const T = +activity || 0;
+
+    if (gender === 'Woman') {
+      return M * 0.03 + T * 0.4;
     } else {
-      return weight * 0.04 + activity * 0.6;
+      return M * 0.04 + T * 0.6;
     }
   };
 
   const result = calculate();
-
+  const amountOfWater = result.toFixed(1);
   return (
     <div>
-      <h4>Calculate your rate:</h4>
-      <div>
+      <h4 className={style.calculateTitle}>Calculate your rate:</h4>
+      <div className={style.divWithRadioButtons}>
         <div>
           <input
             onChange={() => setGender('Woman')}
@@ -27,7 +30,7 @@ const DailyCalculate = ({}) => {
             name="gender"
             checked={gender === 'Woman'}
           />
-          <label>For woman</label>
+          <label className={style.gender}>For woman</label>
         </div>
         <div>
           <input
@@ -36,31 +39,40 @@ const DailyCalculate = ({}) => {
             name="gender"
             checked={gender === 'Man'}
           />
-          <label>For man</label>
+          <label className={style.gender}>For man</label>
         </div>
       </div>
-      <p>Your weight in kilograms:</p>
-      <input
-        onChange={e => setWeight(+e.target.value)}
-        type="text"
-        name=""
-        placeholder="0"
-        value={weight}
-      />
-      <p>
-        The time of active participation in sports or other activities with a
-        high physical. load in hours:
-      </p>
-      <input
-        onChange={e => setActivity(+e.target.value)}
-        type="text"
-        name=""
-        placeholder="0"
-        value={activity}
-      />
-      <p>
-        The required amount of water in liters per day:<span>{result} L</span>
-      </p>
+      <div className={style.divWithChoiceOfWeight}>
+        <p className={style.selectionName}>Your weight in kilograms:</p>
+        <input
+          className={style.choice}
+          onChange={e => setWeight(e.target.value)}
+          type="text"
+          name="weight"
+          placeholder="0"
+          value={weight}
+        />
+      </div>
+      <div className={style.divWithChoiceOfActivity}>
+        <p className={style.selectionName}>
+          The time of active participation in sports or other activities with a
+          high physical. load in hours:
+        </p>
+        <input
+          className={style.choice}
+          onChange={e => setActivity(e.target.value)}
+          type="text"
+          name="activity"
+          placeholder="0"
+          value={activity}
+        />
+      </div>
+      <div className={style.amountOfWater}>
+        <p className={style.amountOfWaterTitle}>
+          The required amount of water in liters per day:
+        </p>
+        <p className={style.spanOfAmountOfWater}> {amountOfWater} L</p>
+      </div>
     </div>
   );
 };

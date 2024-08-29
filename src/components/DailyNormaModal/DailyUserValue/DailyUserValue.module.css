@@ -1,0 +1,36 @@
+.userValue {
+  padding-bottom: 14px;
+}
+
+.userValueDescription {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+  padding-bottom: 16px;
+}
+
+.inputValue {
+  width: 100%;
+  border: 1px solid #d7e3ff;
+  border-radius: 6px;
+  padding: 12px 10px;
+}
+
+.inputValue::placeholder {
+  color: #9ebbff;
+  opacity: 1;
+}
+
+.inputValue:hover,
+.inputValue:focus,
+.inputValue:active {
+  outline: none;
+  color: #407bff;
+}
+
+@media (max-width: 1439px) {
+}
+
+@media (max-width: 767px) {
+}
