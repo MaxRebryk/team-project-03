@@ -1,4 +1,4 @@
-import { getUserInfoById, updateUser } from '../services/users.js';
+import { getUserInfoById, updateUser, createUser } from '../services/users.js';
 import createHttpError from 'http-errors';
 import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
@@ -15,6 +15,26 @@ export const getUserInfoByIdController = async (req, res, next) => {
   res.json({
     status: 200,
     message: `Successfully found info about user with id ${userId}!`,
+    data: user,
+  });
+};
+
+export const createUserController = async (req, res) => {
+  const photo = req.file;
+  let photoUrl;
+  if (photo) {
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
+
+  const user = await createUser({ ...req.body, photo: photoUrl });
+
+  res.status(201).json({
+    status: 201,
+    message: 'Successfully created a user!',
     data: user,
   });
 };

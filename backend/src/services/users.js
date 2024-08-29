@@ -5,6 +5,11 @@ export const getUserInfoById = async (userId) => {
   return user;
 };
 
+export const createUser = async (data) => {
+  const user = await UsersCollection.create({ ...data });
+  return user;
+};
+
 export const updateUser = async (userId, payload, options = {}) => {
   const rawResult = await UsersCollection.findOneAndUpdate(
     { _id: userId },
