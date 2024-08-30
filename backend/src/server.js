@@ -1,3 +1,14 @@
+
+import 'dotenv/config';
+import express from 'express';
+import pino from 'pino-http';
+import cors from 'cors';
+import router from './routers/index.js';
+import { env } from './utils/env.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
+
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
@@ -8,13 +19,20 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import router from './routers/index.js';
 import { UPLOAD_DIR } from './constants/index.js';
 
+
 const PORT = Number(env('PORT', '3000'));
 
 export const startServer = () => {
   const app = express();
 
   app.use(express.json());
+
   app.use(cors());
+
+  app.use(cookieParser());
+
+  app.use(cors());
+
   app.use(
     pino({
       transport: {
@@ -25,7 +43,10 @@ export const startServer = () => {
 
   app.use(router);
 
+
+
   app.use('/uploads', express.static(UPLOAD_DIR));
+
 
   app.use('*', notFoundHandler);
 
