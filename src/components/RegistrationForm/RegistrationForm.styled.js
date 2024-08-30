@@ -197,3 +197,12 @@ export const StyledBtn = styled.div`
     fill: ${baseTheme.colors.blue};
   }
 `;
+
+export const GoogleSignInBtn = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+`;
