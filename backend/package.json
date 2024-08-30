@@ -12,8 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cloudinary": "^2.4.0",
-
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.4.0",
     "cookie-parser": "^1.4.6",
@@ -25,9 +23,6 @@
     "mongoose": "^8.6.0",
     "moongose": "^1.0.0",
     "multer": "^1.4.5-lts.1",
-    "pino-http": "^10.2.0"
-  },
-  "description": "",
     "pino-http": "^10.2.0"
   },
   "devDependencies": {
