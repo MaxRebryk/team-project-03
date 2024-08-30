@@ -3,6 +3,7 @@ import DailyUserValue from './DailyUserValue/DailyUserValue';
 import DailyCalculate from './DailyCalculate/DailyCalculate';
 import style from './DailyNormaModal.module.css';
 import { useCallback, useEffect } from 'react';
+import icons from '../../images/icons.svg';
 
 const DailyNormaModal = ({ isOpen, closeModal }) => {
   const handleBackdropClick = useCallback(e => {
@@ -38,7 +39,11 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
       <div className={style.modal}>
         <div className={style.divWithTitle}>
           <h3 className={style.dailyNormaTitle}>My daily norma</h3>
-          <button onClick={closeModal}>Close</button>
+          <button className={style.closeBtn} onClick={closeModal}>
+            <svg className={style.icon} width="24" height="24">
+              <use href={`${icons}#icon-close`}></use>
+            </svg>
+          </button>
         </div>
         <div className={style.contentOfModal}>
           <DailyFormula />

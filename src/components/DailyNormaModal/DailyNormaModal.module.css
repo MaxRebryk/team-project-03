@@ -58,6 +58,19 @@
   font-size: 18px;
 }
 
+.closeBtn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-top: 4px;
+}
+
+.icon {
+  color: #407bff;
+  stroke: #407bff;
+  fill: #407bff;
+}
+
 @media (max-width: 1439px) {
   .modal {
     width: 704px;
