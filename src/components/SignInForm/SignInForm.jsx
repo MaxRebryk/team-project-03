@@ -3,10 +3,9 @@ import { useDispatch } from 'react-redux';
 import { signin } from '../../redux/auth/operatoins';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import css from './SingInForm.module.css';
+import style from './SignInForm.module.css';
 import * as Yup from 'yup';
 import { useId, useState } from 'react';
-import sprite from '../../../public/icons/sprite.svg';
 
 const UserSchema = Yup.object().shape({
   email: Yup.string()
@@ -53,59 +52,65 @@ export default function SignInForm() {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className={css.form} autoComplete="off">
-            <h2 className={css.title}>Sign In</h2>
-            <label className={css.label} htmlFor={emailFindId}>
+          <Form className={style.form} autoComplete="off">
+            <h2 className={style.title}>Sign In</h2>
+            <label className={style.label} htmlFor={emailFindId}>
               Email
               <Field
                 id={emailFindId}
-                className={css.form_input}
+                className={style.form_input}
                 type="email"
                 name="email"
               />
               <ErrorMessage
-                className={css.error}
+                className={style.error}
                 name="email"
                 component="div"
               />
             </label>
-            <label className={css.label} htmlFor={pswFindId}>
+            <label className={style.label} htmlFor={pswFindId}>
               Password
-              <div className={css.passwordWrapper}>
+              <div className={style.passwordWrapper}>
                 <Field
                   id={pswFindId}
-                  className={css.form_input}
+                  className={style.form_input}
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                 />
                 <span
                   onClick={togglePasswordVisibility}
-                  className={css.togglePassword}
+                  className={style.togglePassword}
                 >
-                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                  <svg className={style.icon}>
+                    <use
+                      href={`../../../public/icons/sprite.svg#${
+                        showPassword ? 'eye-slash' : 'eye'
+                      }`}
+                    />
+                  </svg>
                 </span>
               </div>
               <ErrorMessage
-                className={css.error}
+                className={style.error}
                 name="password"
                 component="div"
               />
             </label>
-            <button className={css.btn} type="submit" disabled={isSubmitting}>
+            <button className={style.btn} type="submit" disabled={isSubmitting}>
               Sign In
             </button>
           </Form>
         )}
       </Formik>
-      <div className={css.navigation}>
+      <div className={style.navigation}>
         <p>
           Don't have an account?{' '}
-          <a href="/signup" className={css.link}>
+          <a href="/signup" className={style.link}>
             Sign Up
           </a>
         </p>
         <p>
-          <a href="/forgot-password" className={css.link}>
+          <a href="/forgot-password" className={style.link}>
             Forgot your password?
           </a>
         </p>
