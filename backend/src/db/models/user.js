@@ -24,7 +24,7 @@ const usersSchema = new Schema(
     photo: {
       type: String,
     },
-    dailyNorma: { type: Number, default: 2000 },
+    dailyNorma: { type: Number, default: 2000, required: true },
   },
   { timestamps: true, versionKey: false },
 );

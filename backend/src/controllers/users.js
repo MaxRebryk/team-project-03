@@ -69,3 +69,20 @@ export const patchUserController = async (req, res, next) => {
     data: result.user,
   });
 };
+
+export const updateDailyNormaController = async (req, res) => {
+  const userId = req.user._id; // Отримуємо userId з req.user
+  const { dailyNorma } = req.body;
+
+  try {
+    const updatedUser = await updateDailyNorma(userId, dailyNorma);
+    res.status(200).json({
+      status: 200,
+      message: 'Денна норма споживання води успішно оновлена.',
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.error('Помилка при оновленні денної норми води:', error);
+    res.status(400).json({ message: error.message });
+  }
+};
