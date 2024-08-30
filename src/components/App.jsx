@@ -1,4 +1,5 @@
+import { Header } from './Header/Header';
 const App = () => {
-  return <div>React homework template</div>;
+  return <Header />;
 };
 export default App;
