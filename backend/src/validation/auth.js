@@ -1,11 +1,10 @@
 import Joi from 'joi';
 
 export const registerUserSchema = Joi.object({
-  name: Joi.string().min(3).max(30).required().messages({
+  name: Joi.string().min(3).max(30).messages({
     'string.base': 'Username should be a string',
     'string.min': 'Username should have at least{#limit} characters',
     'string.max': 'Username should have at most {#limit} characters',
-    'any.required': 'Username is required',
   }),
   email: Joi.string().email().required().messages({
     'string.email': 'Email should be in a valid email format',
@@ -17,10 +16,11 @@ export const registerUserSchema = Joi.object({
     'string.max': 'Password should have at most {#limit} characters',
     'any.required': 'Password is required',
   }),
-  dailyNorma: Joi.number().min(1500).max(15000).default(1500).messages({
+  dailyNorma: Joi.number().min(1500).max(15000).messages({
     'number.min': 'Daily norma of water should be at least {#limit} ml',
     'number.max': 'Daily norma of water should be at most {#limit} ml',
   }),
+  gender: Joi.string().valid('woman', 'man'),
   photo: Joi.string().optional(),
 });
 

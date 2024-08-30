@@ -1,21 +1,10 @@
-
 import { model, Schema } from 'mongoose';
-
-const usersSchema = new Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    dailyNorma: { type: Number, default: 1500 },
-    photo: { type: String },
-
-import { Schema, model } from 'mongoose';
 
 const usersSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
@@ -35,7 +24,7 @@ const usersSchema = new Schema(
     photo: {
       type: String,
     },
-
+    dailyNorma: { type: Number, default: 2000 },
   },
   { timestamps: true, versionKey: false },
 );

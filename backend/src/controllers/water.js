@@ -7,7 +7,8 @@ import {
 } from '../services/water.js';
 
 export const getWaterController = async (req, res) => {
-  const waterPortions = await getAllWater();
+  const userId = req.user._id;
+  const waterPortions = await getAllWater(userId);
   res.status(200).json({
     status: 200,
     message: `Success!`,
@@ -15,10 +16,11 @@ export const getWaterController = async (req, res) => {
   });
 };
 export const addWaterController = async (req, res) => {
+  const userId = req.user._id;
   const waterData = {
     ...req.body,
   };
-  const newPortion = await addWater(waterData);
+  const newPortion = await addWater(waterData, userId);
   res.status(201).json({
     status: 201,
     message: `Successfully add water!`,
@@ -27,9 +29,14 @@ export const addWaterController = async (req, res) => {
 };
 export const updateWaterController = async (req, res) => {
   const { id } = req.params;
-  const result = await updateWater(id, {
-    ...req.body,
-  });
+  const userId = req.user._id;
+  const result = await updateWater(
+    id,
+    {
+      ...req.body,
+    },
+    userId,
+  );
   if (!result) {
     return res.status(404).json({ message: 'Water not found' });
   }
@@ -41,7 +48,8 @@ export const updateWaterController = async (req, res) => {
 };
 export const deleteWaterController = async (req, res) => {
   const { id } = req.params;
-  const deletedWater = await deleteWater(id);
+  const userId = req.user._id;
+  const deletedWater = await deleteWater(id, userId);
 
   res.status(200).json({
     status: 200,
