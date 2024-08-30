@@ -1,3 +1,4 @@
+
 import { startServer } from './server.js';
 import { initMongoDB } from './db/initMongoDB.js';
 import { createDirIfNotExists } from './utils/createDirIfNotExists.js';
@@ -11,3 +12,8 @@ const bootstrap = async () => {
 };
 
 bootstrap();
+
+const message = 'Hello world';
+
+console.log(message);
+
