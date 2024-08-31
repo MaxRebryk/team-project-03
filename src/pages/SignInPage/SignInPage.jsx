@@ -1,11 +1,16 @@
-import { useSelector } from 'react-redux';
-import SignInForm from '../../components/SignInForm';
+// import { useSelector } from 'react-redux';
+import LoginForm from 'components/LoginForm/LoginForm';
+import React from 'react';
+// import { selectIsLoading } from 'redux/auth/selectors';
 
 const SignInPage = () => {
-  const isLoading = useSelector;
+  // const isLoading = useSelector(selectIsLoading);
   return (
     <div>
-      <SignInForm />
+      <LoginForm />
+      {/* {isLoading} */}
     </div>
   );
 };
+
+export default SignInPage;

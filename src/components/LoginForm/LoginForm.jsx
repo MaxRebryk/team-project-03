@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { signin } from '../../redux/auth/operatoins';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import style from './SignInForm.module.css';
+import style from './LoginForm.module.css';
 import * as Yup from 'yup';
 import { useId, useState } from 'react';
 
@@ -19,7 +19,7 @@ const UserSchema = Yup.object().shape({
     .required('Password is required!'),
 });
 
-export default function SignInForm() {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const emailFindId = useId();
@@ -42,7 +42,7 @@ export default function SignInForm() {
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <Formik
         initialValues={{
           email: '',

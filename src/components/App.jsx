@@ -3,9 +3,9 @@
 // };
 // export default App;
 
-import SignInForm from './SignInForm/SignInForm';
+import SignInPage from '../pages/SignInPage/SignInPage';
 
 const App = () => {
-  return <SignInForm />;
+  return <SignInPage />;
 };
 export default App;

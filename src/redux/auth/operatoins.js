@@ -19,7 +19,9 @@ export const signin = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        'Not valid email or password. Please, try again'
+      );
     }
   }
 );
