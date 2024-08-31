@@ -6,10 +6,6 @@
 import SignInForm from './SignInForm/SignInForm';
 
 const App = () => {
-  return (
-    <div>
-      <SignInForm />
-    </div>
-  );
+  return <SignInForm />;
 };
 export default App;

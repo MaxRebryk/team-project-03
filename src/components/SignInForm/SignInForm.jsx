@@ -51,16 +51,19 @@ export default function SignInForm() {
         validationSchema={UserSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, touched, errors }) => (
           <Form className={style.form} autoComplete="off">
             <h2 className={style.title}>Sign In</h2>
             <label className={style.label} htmlFor={emailFindId}>
-              Email
+              Enter your email
               <Field
                 id={emailFindId}
                 className={style.form_input}
                 type="email"
                 name="email"
+                placeholder="E-mail"
+                autoComplete="email"
+                error={touched.email && errors.email ? 'true' : 'false'}
               />
               <ErrorMessage
                 className={style.error}
@@ -69,13 +72,16 @@ export default function SignInForm() {
               />
             </label>
             <label className={style.label} htmlFor={pswFindId}>
-              Password
+              Enter your password
               <div className={style.passwordWrapper}>
                 <Field
                   id={pswFindId}
                   className={style.form_input}
                   type={showPassword ? 'text' : 'password'}
                   name="password"
+                  placeholder="Password"
+                  error={touched.password && errors.password ? 'true' : 'false'}
+                  autoComplete="new-password"
                 />
                 <span
                   onClick={togglePasswordVisibility}
