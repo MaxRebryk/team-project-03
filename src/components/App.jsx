@@ -3,9 +3,13 @@
 // };
 // export default App;
 
-import SignInPage from '../pages/SignInPage/SignInPage';
+import SignInPage from '../pages/SignInPage/SignInPage.jsx';
 
 const App = () => {
-  return <SignInPage />;
+  return (
+    <>
+      <SignInPage />
+    </>
+  );
 };
 export default App;
