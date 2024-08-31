@@ -6,7 +6,7 @@ import waterRateRouter from './waterRate.js';
 
 const router = Router();
 
-router.use('/users', usersRouter);
+router.use('/user', usersRouter);
 router.use('/water', waterRouter);
 router.use('/auth', authRouter);
 router.use('/water-rate', waterRateRouter);
