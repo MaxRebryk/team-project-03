@@ -1,4 +1,10 @@
+import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
+
 const App = () => {
-  return <div>React homework template</div>;
+  return (
+    <>
+      <WelcomePage />
+    </>
+  );
 };
 export default App;
