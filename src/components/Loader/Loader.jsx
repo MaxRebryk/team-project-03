@@ -1,32 +1,28 @@
-import { ThreeDots } from 'react-loader-spinner';
-import { baseTheme } from '../theme';
-import { createPortal } from 'react-dom';
+import css from "./Loader.module.css";
 
-const loaderModal = document.querySelector('#loadermodal-root');
-
-export default function Loader() {
-  return createPortal(
-    <ThreeDots
-      height="60"
-      width="60"
-      radius="9"
-      color={baseTheme.colors.blue}
-      wrapperStyle={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        background: 'rgba(0, 0, 0, 0.8)',
-        zIndex: 10,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-      ariaLabel="three-dots-loading"
-      wrapperClassName=""
-      visible={true}
-    />,
-    loaderModal
+const Loader = () => {
+  return (
+    <div className={css.backdrop}>
+      <div className={css.circles}>
+        <span style={{ '--n': 1 }}></span>
+        <span style={{ '--n': 2 }}></span>
+        <span style={{ '--n': 3 }}></span>
+        <span style={{ '--n': 4 }}></span>
+        <span style={{ '--n': 5 }}></span>
+        <span style={{ '--n': 6 }}></span>
+        <span style={{ '--n': 7 }}></span>
+        <span style={{ '--n': 8 }}></span>
+        <span style={{ '--n': 9 }}></span>
+        <span style={{ '--n': 10 }}></span>
+        <span style={{ '--n': 11 }}></span>
+        <span style={{ '--n': 12 }}></span>
+        <span style={{ '--n': 13 }}></span>
+        <span style={{ '--n': 14 }}></span>
+        <span style={{ '--n': 15 }}></span>
+        <span style={{ '--n': 16 }}></span>
+      </div>
+    </div>
   );
-}
+};
+
+export default Loader;
