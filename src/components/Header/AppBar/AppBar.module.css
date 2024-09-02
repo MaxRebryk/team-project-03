@@ -1,0 +1,33 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon {
+  color: #2f2f2f;
+  width: 24px;
+  height: 24px;
+}
+
+.user-container {
+  position: relative;
+}
+.button {
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  color: #407bff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: left;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
