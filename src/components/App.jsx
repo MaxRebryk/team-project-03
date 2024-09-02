@@ -1,3 +1,6 @@
+
+import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
+
 // const App = () => {
 //   return <div>React homework template</div>;
 // };
@@ -7,9 +10,17 @@ import MonthStatsTable from './MonthStatsTable/MonthStatsTable';
 
 const App = () => {
   return (
+
     <div>
-      <MonthStatsTable />
+      <p>'React homework template'</p>
     </div>
+
+    <>
+      <WelcomePage />
+    </>
+
   );
 };
 export default App;
+
+
