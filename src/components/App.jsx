@@ -3,9 +3,15 @@ import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
 
 const App = () => {
   return (
+
+    <div>
+      <p>'React homework template'</p>
+    </div>
+
     <>
       <WelcomePage />
     </>
+
   );
 };
 export default App;
