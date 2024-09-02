@@ -53,6 +53,7 @@ router.post(
   '/reset-password',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
+);
 
 router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
 
