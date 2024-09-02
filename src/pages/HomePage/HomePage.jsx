@@ -1,6 +1,7 @@
 import DailyNorma from 'components/DailyNorma/DailyNorma';
 import css from './HomePage.module.css';
 import HomeBottleImg from 'components/HomeBottleImg/HomeBottleImg';
+import MonthStatsTable from 'components/MonthStatsTable/MonthStatsTable';
 
 const HomePage = () => {
   return (
@@ -10,6 +11,7 @@ const HomePage = () => {
       </div>
 
       <HomeBottleImg />
+      <MonthStatsTable />
     </section>
   );
 };

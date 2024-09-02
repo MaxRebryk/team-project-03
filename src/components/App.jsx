@@ -1,4 +1,10 @@
+import HomePage from 'pages/HomePage/HomePage';
+
 const App = () => {
-  return <div>React homework template</div>;
+  return (
+    <>
+      <HomePage />
+    </>
+  );
 };
 export default App;
