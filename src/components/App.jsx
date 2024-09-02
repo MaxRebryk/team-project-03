@@ -1,5 +1,19 @@
-import { Header } from './Header/Header';
 const App = () => {
-  return <Header />;
+  return <div>React homework template</div>;
 };
 export default App;
+// App.jsx
+import React from 'react';
+import Loader from 'components/Loader/Loader.jsx'; // Adjust the path if necessary
+
+const App = () => {
+  return (
+    <div>
+      <h1>Water Tracker</h1>
+      <Loader />
+    </div>
+  );
+};
+
+export default App;
+
