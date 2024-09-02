@@ -6,9 +6,8 @@ import {
   loginUserSchema,
   requestResetEmailSchema,
   resetPasswordSchema,
+  loginWithGoogleOAuthSchema,
 } from '../validation/auth.js';
-
-import { registerUserSchema, loginUserSchema, loginWithGoogleOAuthSchema, } from '../validation/auth.js';
 
 import {
   registerUserController,
