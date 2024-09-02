@@ -1,10 +1,15 @@
 import DailyNorma from 'components/DailyNorma/DailyNorma';
 import css from './HomePage.module.css';
+import HomeBottleImg from 'components/HomeBottleImg/HomeBottleImg';
 
 const HomePage = () => {
   return (
     <section className={css.homeSection}>
-      <DailyNorma />
+      <div className={css.dailyContainer}>
+        <DailyNorma />
+      </div>
+
+      <HomeBottleImg />
     </section>
   );
 };
