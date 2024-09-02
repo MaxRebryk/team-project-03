@@ -6,6 +6,8 @@ import App from 'components/App.jsx';
 import './index.css';
 import 'modern-normalize';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 // Get the root element
 const rootElement = document.getElementById('root');
@@ -16,22 +18,12 @@ if (rootElement) {
 
   // Render the application
   root.render(
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   );
 } else {
   console.error('Root element not found');
 }
-
-=======
-import App from './components/App'; // Adjust the path if necessary
-import './index.css'; // Optional: Include any global styles
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
