@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addWaterRecord } from './operations';
+import { addWaterRecord, getMonthlyRecord } from './operations';
 
 const waterSlice = createSlice({
   name: 'water',
@@ -17,8 +17,21 @@ const waterSlice = createSlice({
       .addCase(addWaterRecord.fulfilled, (state, action) => {
         state.dailyRecords.push(action.payload);
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(addWaterRecord.rejected, state => {
+        state.isLoading = false;
+        state.error = true;
+      })
+      .addCase(getMonthlyRecord.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getMonthlyRecord.fulfilled, (state, action) => {
+        state.monthlyRecords = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getMonthlyRecord.rejected, state => {
         state.isLoading = false;
         state.error = true;
       });
