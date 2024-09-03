@@ -11,7 +11,7 @@ export const getWaterController = async (req, res) => {
   const waterPortions = await getAllWater(userId);
   res.status(200).json({
     status: 200,
-    message: `Success!`,
+    message: 'Success!',
     data: waterPortions,
   });
 };
@@ -23,7 +23,7 @@ export const addWaterController = async (req, res) => {
   const newPortion = await addWater(waterData, userId);
   res.status(201).json({
     status: 201,
-    message: `Successfully add water!`,
+    message: 'Successfully added water!',
     data: newPortion,
   });
 };

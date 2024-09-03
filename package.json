@@ -47,7 +47,9 @@
   },
   "description": "**Read in other languages: [rosyjski](README.md), [polski](README.pl.md).**",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@redocly/cli": "^1.22.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
