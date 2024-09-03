@@ -14,7 +14,7 @@
       "url": "http://localhost:3000"
     },
     {
-      "url": "https://XXXXXXX.onrender.com"
+      "url": "https://team-project-03.onrender.com"
     }
   ],
   "tags": [
@@ -1004,7 +1004,9 @@
                 "type": "object",
                 "properties": {
                   "dailyNorma": {
-                    "description": "User's daily water intake norm"
+                    "description": "User's daily water intake norm",
+                    "type": "number",
+                    "example": 2000
                   }
                 }
               }

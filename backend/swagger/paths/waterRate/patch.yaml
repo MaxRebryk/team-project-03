@@ -13,6 +13,8 @@ requestBody:
         properties:
           dailyNorma:
             description: "User's daily water intake norm"
+            type: number
+            example: 2000
 responses:
   '200':
     description: Updated waterRate
