@@ -14,13 +14,10 @@ import {
   loginUserController,
   logoutUserController,
   refreshUserSessionController,
-
   requestResetEmailController,
   resetPasswordController,
-
   getGoogleOAuthUrlController,
   loginWithGoogleController,
-
 } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
 
@@ -42,7 +39,6 @@ router.post('/logout', ctrlWrapper(logoutUserController));
 
 router.post('/refresh', ctrlWrapper(refreshUserSessionController));
 
-
 router.post(
   '/request-reset-email',
   validateBody(requestResetEmailSchema),
@@ -59,10 +55,8 @@ router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
 
 router.post(
   '/confirm-oauth',
-  jsonParser,
   validateBody(loginWithGoogleOAuthSchema),
   ctrlWrapper(loginWithGoogleController),
-
 );
 
 export default router;
