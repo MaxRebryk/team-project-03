@@ -63,7 +63,7 @@ const waterSlice = createSlice({
   },
 });
 
-export const waterReducer = waterSlice.reducer;
+export default waterSlice.reducer;
 export const selectCurrentRecord = state => state.water.currentRecord;
 export const selectIsLoading = state => state.water.isLoading;
 export const selectError = state => state.water.error;

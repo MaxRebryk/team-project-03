@@ -1,17 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './DailyUserValue.module.css';
-// import { useDispatch } from 'react-redux';
-// import { addWaterRecord } from 'redux/water/operations';
+import { useDispatch } from 'react-redux';
+import { addWaterRecord } from '../../../redux/water/operations.js';
+import { useSelector } from 'react-redux';
+import { selectError, selectIsLoading } from '../../../redux/water/slice.js';
 
 const DailyUserValue = ({ closeModal }) => {
-  // const dispatch = useDispatch();
+  const [isFirstOpen, setIsFirstOpen] = useState(true);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  const dispatch = useDispatch();
   const [userValue, setUserValue] = useState();
 
   const handleClick = () => {
     const record = { date: Date.now(), volume: +userValue };
-    // dispatch(addWaterRecord(record));
-    closeModal();
+    setIsFirstOpen(false);
+    dispatch(addWaterRecord(record));
   };
+
+  useEffect(() => {
+    if (!isFirstOpen && !isLoading && !error) {
+      closeModal();
+    } else if (!isFirstOpen && !isLoading && error) {
+      console.log(error);
+    }
+  }, [isLoading, error]);
 
   return (
     <div className={style.userValue}>
