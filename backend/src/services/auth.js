@@ -34,7 +34,7 @@ export const loginUser = async (payload) => {
   if (!user) {
     throw createHttpError(404, 'User not found');
   }
-  const isEqual = await bcrypt.compare(payload.password, user.password); 
+  const isEqual = await bcrypt.compare(payload.password, user.password);
 
   if (!isEqual) {
     throw createHttpError(401, 'Unauthorized');
@@ -87,7 +87,6 @@ export const refreshUsersSession = async ({ sessionId, refreshToken }) => {
     throw createHttpError(401, 'Session token expired');
   }
 
-  
   const newSession = createSession();
 
   await SessionsCollection.deleteOne({ _id: sessionId, refreshToken });
@@ -97,7 +96,6 @@ export const refreshUsersSession = async ({ sessionId, refreshToken }) => {
     ...newSession,
   });
 };
-
 
 export const requestResetToken = async (email) => {
   const user = await UsersCollection.findOne({ email });
@@ -163,6 +161,7 @@ export const resetPassword = async (payload) => {
     { _id: user._id },
     { password: encryptedPassword },
   );
+};
 
 export const loginOrSignupWithGoogle = async (code) => {
   const loginTicket = await validateCode(code);
@@ -186,5 +185,4 @@ export const loginOrSignupWithGoogle = async (code) => {
     userId: user._id,
     ...newSession,
   });
-
 };
