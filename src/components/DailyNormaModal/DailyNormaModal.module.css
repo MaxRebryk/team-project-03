@@ -80,6 +80,8 @@
 @media (max-width: 767px) {
   .modal {
     width: 280px;
+    max-height: 90vh;
+    overflow: auto;
     padding: 24px 12px;
     padding: 24px 12px;
   }
