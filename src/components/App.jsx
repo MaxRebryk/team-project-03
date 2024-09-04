@@ -1,32 +1,12 @@
-
 import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
+import DailyNormaModal from './DailyNormaModal/DailyNormaModal.jsx';
 
 const App = () => {
   return (
-
-    <div>
-      <p>'React homework template'</p>
-    </div>
-
     <>
       <WelcomePage />
+      <DailyNormaModal isOpen={true} />
     </>
-
   );
 };
 export default App;
-// App.jsx
-import React from 'react';
-import Loader from 'components/Loader/Loader.jsx'; // Adjust the path if necessary
-
-const App = () => {
-  return (
-    <div>
-      <h1>Water Tracker</h1>
-      <Loader />
-    </div>
-  );
-};
-
-export default App;
-

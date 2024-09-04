@@ -48,12 +48,7 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
         <div className={style.contentOfModal}>
           <DailyFormula />
           <DailyCalculate />
-          <DailyUserValue />
-        </div>
-        <div className={style.btnContainer}>
-          <button className={style.btn} onClick={closeModal}>
-            Save
-          </button>
+          <DailyUserValue closeModal={closeModal} />
         </div>
       </div>
     </div>
