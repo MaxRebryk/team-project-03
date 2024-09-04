@@ -1,9 +1,5 @@
 /* ==================Menu=============*/
 
-/* .user-container:hover .context-container {
-  transform: translateY(0);
-  opacity: 1;
-} */
 .context-container {
   position: absolute;
   top: 70px;

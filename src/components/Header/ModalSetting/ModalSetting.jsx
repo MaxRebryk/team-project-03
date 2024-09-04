@@ -5,6 +5,7 @@ import { ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { useEffect, useRef } from 'react';
 import { BiHide } from 'react-icons/bi';
+import { AiOutlineEye } from 'react-icons/ai';
 import { IoMdClose } from 'react-icons/io';
 import { LuUpload } from 'react-icons/lu';
 import css from './ModalSettind.module.css';
@@ -24,6 +25,9 @@ const UserSchema = Yup.object().shape({
 });
 
 export default function ModalSetting({ isOpen, closeModal }) {
+  const [hideEyeOld, setHideEyeOld] = useState(false);
+  const [hideEyeRepeat, setHideEyeRepeat] = useState(false);
+  const [hideEyeNew, setHideEyeNew] = useState(false);
   //=============StateForSowAndHiddenPassword===================
   const [isOldPassword, setOldPassword] = useState('password');
   const [isRepeatPassword, setRepeatPassword] = useState('password');
@@ -31,22 +35,28 @@ export default function ModalSetting({ isOpen, closeModal }) {
   const handleVisiblePasswordRepeatPassword = () => {
     if (isRepeatPassword === 'password') {
       setRepeatPassword('text');
+      setHideEyeRepeat(true);
     } else {
       setRepeatPassword('password');
+      setHideEyeRepeat(false);
     }
   };
   const handleVisiblePasswordNewPassword = () => {
     if (isNewPassword === 'password') {
       setNewPassword('text');
+      setHideEyeNew(true);
     } else {
       setNewPassword('password');
+      setHideEyeNew(false);
     }
   };
   const handleVisiblePasswordOldPassword = () => {
     if (isOldPassword === 'password') {
       setOldPassword('text');
+      setHideEyeOld(true);
     } else {
       setOldPassword('password');
+      setHideEyeOld(false);
     }
   };
   //============================================================
@@ -61,15 +71,18 @@ export default function ModalSetting({ isOpen, closeModal }) {
 
   //===========EffectModal===========
   const modalRef = useRef(null);
+  const formikRef = useRef(null);
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.key === 'Escape') {
         closeModal();
+        formikRef.current && formikRef.current.resetForm();
       }
     };
     const handleMouseDown = event => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         closeModal();
+        formikRef.current && formikRef.current.resetForm();
       }
     };
     if (isOpen) {
@@ -97,7 +110,10 @@ export default function ModalSetting({ isOpen, closeModal }) {
             <button
               type="button"
               className={css['button-close']}
-              onClick={closeModal}
+              onClick={() => {
+                closeModal();
+                formikRef.current && formikRef.current.resetForm();
+              }}
             >
               <IoMdClose />
             </button>
@@ -127,6 +143,7 @@ export default function ModalSetting({ isOpen, closeModal }) {
           </div>
         </div>
         <Formik
+          innerRef={formikRef}
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={UserSchema}
@@ -219,7 +236,7 @@ export default function ModalSetting({ isOpen, closeModal }) {
                       className={css['eyes-hide']}
                       onClick={handleVisiblePasswordOldPassword}
                     >
-                      <BiHide />
+                      {hideEyeOld ? <AiOutlineEye /> : <BiHide />}
                     </button>
                     <ErrorMessage
                       className={css.error}
@@ -245,7 +262,7 @@ export default function ModalSetting({ isOpen, closeModal }) {
                       className={css['eyes-hide']}
                       onClick={handleVisiblePasswordNewPassword}
                     >
-                      <BiHide />
+                      {hideEyeNew ? <AiOutlineEye /> : <BiHide />}
                     </button>
                     <ErrorMessage
                       className={css.error}
@@ -271,7 +288,7 @@ export default function ModalSetting({ isOpen, closeModal }) {
                       className={css['eyes-hide']}
                       onClick={handleVisiblePasswordRepeatPassword}
                     >
-                      <BiHide />
+                      {hideEyeRepeat ? <AiOutlineEye /> : <BiHide />}
                     </button>
                     <ErrorMessage
                       className={css.error}

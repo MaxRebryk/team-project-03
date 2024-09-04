@@ -23,11 +23,11 @@
   top: 50%;
   left: 50%;
   border-radius: 10px;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
   transition: transform 250ms linear;
   padding: 32px 24px;
   .backdrop.is-hidden & {
-    transform: translate(-50%, -50%) scale(-0.5, 1);
+    transform: translate(-50%, -50%);
   }
   @media screen and (min-width: 768px) {
     width: 592px;
