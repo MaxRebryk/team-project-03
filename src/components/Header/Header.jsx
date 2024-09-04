@@ -1,14 +1,11 @@
-import AuthNav from './AuthNav/AuthNav';
-import css from './Header.module.css';
+// Default export
+const Header = () => {
+  return <header>Header content</header>;
+};
 
-export function Header() {
-  return (
-    <header className={css.header}>
-      <div className={css.container}>
-        <div className={css['position']}>
-          <AuthNav />
-        </div>
-      </div>
-    </header>
-  );
-}
+export default Header;
+
+// Or named export
+// export const Header = () => {
+//   return <header>Header content</header>;
+// };

@@ -1,7 +1,7 @@
 import { WatersCollection } from '../db/models/water.js';
 import { validateDate } from '../validation/dateValidation.js';
 import { UsersCollection } from '../db/models/user.js';
-// import { reformDate } from '../utils/reformDate';
+import { reformDate } from '../utils/reformDate.js';
 
 //створює новий запис у колекції
 export const addWater = async (userId, payload) => {
@@ -103,9 +103,11 @@ export const fetchMonthlyService = async (userId, dateString) => {
   }
 
   const dailyNorma = user.dailyNorma; // Денна норма води
+  const dailyNormaLiters = (dailyNorma / 1000).toFixed(2); // Конвертуємо в літри
 
   // Створюємо об'єкт для зберігання споживання води за кожен день
-  const dailyConsumptionMap = {};
+  const dailyConsumptionMap = {}; // Зберігає обсяги споживання води
+  const recordsCountMap = {}; // Зберігає кількість записів
   const daysInMonth = new Date(year, month, 0).getDate();
   let totalMonthlyConsumption = 0;
 
@@ -114,29 +116,35 @@ export const fetchMonthlyService = async (userId, dateString) => {
       .toString()
       .padStart(2, '0')}`;
     dailyConsumptionMap[dayKey] = 0;
+    recordsCountMap[dayKey] = 0;
   }
 
   // Заповнюємо об'єкт даними про споживання води
   monthlyConsumption.forEach((record) => {
     const dayKey = record.createdAt.toISOString().slice(0, 10);
     dailyConsumptionMap[dayKey] += record.volume;
+    recordsCountMap[dayKey] += 1;
     totalMonthlyConsumption += record.volume;
   });
 
   // Формуємо масив з результатами
   const dailyResults = [];
-  for (const [date, totalConsumption] of Object.entries(dailyConsumptionMap)) {
-    const consumptionPercentage = (totalConsumption / dailyNorma) * 100;
-    dailyResults.push({
-      date,
-      totalConsumption,
-      consumptionPercentage,
-    });
-  }
+   for (const [date, totalConsumption] of Object.entries(dailyConsumptionMap)) {
+     const formattedDate = reformDate(date); // Форматуємо дату
+     const consumptionPercentage = (totalConsumption / dailyNorma) * 100; // Обчислюємо відсоток від норми
+     const recordsCount = recordsCountMap[date]; // Кількість записів
+     dailyResults.push({
+       date: formattedDate, // Дата у форматі "день, місяць"
+       totalConsumptionLiters: (totalConsumption / 1000).toFixed(2), // Конвертуємо об'єм у літри
+       consumptionPercentage: consumptionPercentage.toFixed(2), // Відсоток споживання води
+       recordsCount, // Кількість записів за день
+       dailyNormaLiters, // Денна норма у літрах
+     });
+   }
 
   return {
     month: dateString,
-    totalMonthlyConsumption,
+    totalMonthlyConsumption: (totalMonthlyConsumption / 1000).toFixed(2), // Загальне споживання за місяць у літрах
     dailyResults,
   };
 };

@@ -157,7 +157,7 @@ export const FormBtnStyled = styled.button`
     line-height: 1.33;
   }
 `;
-export const StyledLabel = styled.label`
+export const Styledlabel = styled.label`
   margin-top: 16px;
   color: ${baseTheme.colors.black};
   position: relative;
@@ -196,13 +196,4 @@ export const StyledBtn = styled.div`
   & use {
     fill: ${baseTheme.colors.blue};
   }
-`;
-
-export const GoogleSignInBtn = styled.div`
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  cursor: pointer;
 `;
