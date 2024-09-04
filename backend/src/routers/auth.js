@@ -6,9 +6,8 @@ import {
   loginUserSchema,
   requestResetEmailSchema,
   resetPasswordSchema,
+  loginWithGoogleOAuthSchema,
 } from '../validation/auth.js';
-
-import { registerUserSchema, loginUserSchema, loginWithGoogleOAuthSchema, } from '../validation/auth.js';
 
 import {
   registerUserController,
@@ -54,6 +53,7 @@ router.post(
   '/reset-password',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
+);
 
 router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
 
