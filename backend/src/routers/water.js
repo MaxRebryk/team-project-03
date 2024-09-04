@@ -1,39 +1,32 @@
-import { Router } from 'express';
+import express from 'express';
 import {
   addWaterController,
   deleteWaterController,
+  getDailyNormaController,
+  getWaterController,
   updateWaterController,
-  fetchDailyController,
-  fetchMonthlyController,
 } from '../controllers/water.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { authenticate } from '../middlewares/authenticate.js';
-import { validateBody } from '../middlewares/validateBody.js';
-import {
-  waterIntakeSchema,
-  updateWaterIntakeSchema,
-} from '../validation/water.js';
 
-const router = Router();
+const router = express.Router();
+const parseJSON = express.json({
+  type: ['application/json', 'application/vnd.api+json'],
+  limit: '100kb',
+});
 
-router.use('/', authenticate);
+router.use(authenticate);
 
-router.post(
-  '/',
-  validateBody(waterIntakeSchema),
-  ctrlWrapper(addWaterController),
-);
+router.get('/daily-norma', ctrlWrapper(getDailyNormaController));
 
-router.patch(
-  '/:idRecordWater',
-  validateBody(updateWaterIntakeSchema),
-  ctrlWrapper(updateWaterController),
-);
+// router.put('/daily-norma', ctrlWrapper(updateDailyNormaController));
+
+router.post('/', parseJSON, ctrlWrapper(addWaterController));
+
+router.get('/', ctrlWrapper(getWaterController));
+
+router.patch('/:id', parseJSON, ctrlWrapper(updateWaterController));
 
 router.delete('/:id', ctrlWrapper(deleteWaterController));
-
-router.get('/daily/:date', ctrlWrapper(fetchDailyController));
-
-router.get('/monthly/:month', ctrlWrapper(fetchMonthlyController));
 
 export default router;

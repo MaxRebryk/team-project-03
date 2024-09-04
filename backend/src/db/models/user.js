@@ -1,10 +1,5 @@
 import { model, Schema } from 'mongoose';
 
-const getNameFromEmail = (email) => {
-  const [name] = email.split('@');
-  return name;
-};
-
 const usersSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId, require: true },
@@ -12,18 +7,10 @@ const usersSchema = new Schema(
       type: String,
       required: false,
     },
-
     email: {
       type: String,
       required: true,
       unique: true,
-    },
-    name: {
-      type: String,
-      required: false,
-      default: function () {
-        return this.email ? this.email.split('@')[0] : '';
-      },
     },
     password: {
       type: String,
@@ -42,13 +29,6 @@ const usersSchema = new Schema(
   },
   { timestamps: true, versionKey: false },
 );
-
-usersSchema.pre('save', function (next) {
-  if (this.isNew && !this.name) {
-    this.name = getNameFromEmail(this.email);
-  }
-  next();
-});
 
 usersSchema.methods.toJSON = function () {
   const obj = this.toObject();

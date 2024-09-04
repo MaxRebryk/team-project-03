@@ -6,5 +6,6 @@ export const isValidId = (req, res, next) => {
   if (!isValidObjectId(userId)) {
     throw createHttpError(400, 'Bad Request');
   }
+
   next();
 };
