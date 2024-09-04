@@ -1,9 +1,9 @@
-import HomePage from 'pages/HomePage/HomePage';
+import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
 
 const App = () => {
   return (
     <>
-      <HomePage />
+      <WelcomePage />
     </>
   );
 };
