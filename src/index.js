@@ -16,9 +16,11 @@ if (rootElement) {
 
   // Render the application
   root.render(
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}> {/* Wrap App with Provider */}
+      <Router basename="/team-project-03"> {/* Wrap with Router and set basename */}
+        <App />
+      </Router>
+    </Provider>
   );
 } else {
   console.error('Root element not found');
