@@ -25,46 +25,47 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    !isRefreshing && (
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <PublicRoute
-                redirectTo={routes.HOMEPAGE}
-                component={WelcomePage}
-              />
-            }
-          />
-          <Route
-            path={routes.REGISTER}
-            element={
-              <PublicRegisterRoute
-                redirectTo={routes.LOGIN}
-                component={SignUpPage}
-              />
-            }
-          />
-          <Route
-            path={routes.LOGIN}
-            element={
-              <PublicRoute
-                redirectTo={routes.HOMEPAGE}
-                component={SignInPage}
-              />
-            }
-          />
-          <Route
-            path={routes.HOMEPAGE}
-            element={
-              <PrivateRoute redirectTo={routes.LOGIN} component={HomePage} />
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} /> {/* Catch-all route */}
-        </Route>
-      </Routes>
-    )
+    <HomePage />
+    // !isRefreshing && (
+    //   // <Routes>
+    //   //   <Route path="/" element={<Layout />}>
+    //   //     <Route
+    //   //       index
+    //   //       element={
+    //   //         <PublicRoute
+    //   //           redirectTo={routes.HOMEPAGE}
+    //   //           component={WelcomePage}
+    //   //         />
+    //   //       }
+    //   //     />
+    //   //     <Route
+    //   //       path={routes.REGISTER}
+    //   //       element={
+    //   //         <PublicRegisterRoute
+    //   //           redirectTo={routes.LOGIN}
+    //   //           component={SignUpPage}
+    //   //         />
+    //   //       }
+    //   //     />
+    //   //     <Route
+    //   //       path={routes.LOGIN}
+    //   //       element={
+    //   //         <PublicRoute
+    //   //           redirectTo={routes.HOMEPAGE}
+    //   //           component={SignInPage}
+    //   //         />
+    //   //       }
+    //   //     />
+    //   //     <Route
+    //   //       path={routes.HOMEPAGE}
+    //   //       element={
+    //   //         <PrivateRoute redirectTo={routes.LOGIN} component={HomePage} />
+    //   //       }
+    //   //     />
+    //   //     <Route path="*" element={<NotFoundPage />} /> {/* Catch-all route */}
+    //   //   </Route>
+    //   // </Routes>
+    // )
   );
 };
 

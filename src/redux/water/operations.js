@@ -13,7 +13,7 @@ export const addWaterRecord = createAsyncThunk(
   }
 );
 
-export const getWaterRecord = createAsyncThunk(
+export const getMonthlyRecord = createAsyncThunk(
   'water/getWaterRecord',
   async (recordId, thunkAPI) => {
     try {
