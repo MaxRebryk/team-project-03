@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { baseTheme } from '../../theme.jsx';
+import { baseTheme } from '../../theme';
 
 export const ContainerDrinkInfo = styled.div`
   padding: 24px 16px;

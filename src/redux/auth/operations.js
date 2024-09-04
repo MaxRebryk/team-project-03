@@ -1,99 +1,128 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { toast } from "react-toastify";
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
-const API_URL = "https://team-project-b-watter-app.onrender.com"; // add URL!!!!
+axios.defaults.baseURL = 'https://aleksanstark.github.io/team-project-03/';
 
-export const registerUser = createAsyncThunk(
-  "auth/registerUser",
-  async (data, thunkAPI) => {
+export const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+export const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = ``;
+};
+
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/register`, data);
-      toast.success("Registration successful!");
-      axios.defaults.headers.common.Authorization = `Bearer ${response.data.data.accessToken}`;
-      return response.data.data; // Припускаємо, що дані знаходяться у полі `data.data`
+      const { data } = await axios.post(`/api/auth/register`, credentials);
+
+      toast.success('Registration successful');
+
+      return data;
     } catch (error) {
-      const message =
-        error.response?.data?.message ||
-        "Registration failed. Please try again.";
-      toast.error(message);
-      return thunkAPI.rejectWithValue(message);
+      toast.error(error.message || 'Registration failed', error);
+
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const loginUser = createAsyncThunk(
-  "auth/loginUser",
-  async (data, thunkAPI) => {
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, data);
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${response.data.data.accessToken}`;
-      console.log(response.data.data.accessToken);
-      
-      return response.data.data; // Припускаємо, що дані знаходяться у полі `data.data`
+      const { data } = await axios.post(`/api/auth/login`, credentials);
+
+      setAuthHeader(data.token);
+
+      toast.success('Login successful');
+
+      return data;
     } catch (error) {
-      const message =
-        error.response?.data?.message || "Login failed. Please try again.";
-      toast.error(message);
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-// Додавання forgotPassword та updatePassword операцій
-export const forgotPassword = createAsyncThunk(
-  "auth/forgotPassword",
-  async (body, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        `${API_URL}/auth/password/forgot`,
-        body
-      );
-      toast.success("Password reset email sent!");
-      return response.data;
-    } catch (error) {
-      const message =
-        error.response?.data?.message ||
-        "Failed to send password reset email. Please try again.";
-      toast.error(message);
-      return thunkAPI.rejectWithValue(message);
+      toast.error(error.message || 'Authorization failed');
+
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const updatePassword = createAsyncThunk(
-  "auth/updatePassword",
-  async ({ token, ...body }, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        `${API_URL}/auth/password/reset/${token}`,
-        body
-      );
-      toast.success("Password updated successfully!");
-      return response.data;
-    } catch (error) {
-      const message =
-        error.response?.data?.message ||
-        "Failed to update password. Please try again.";
-      toast.error(message);
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const logoutUser = createAsyncThunk(
-  "auth/logoutUser",
+export const logOut = createAsyncThunk(
+  '/api/auth/logout',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/logout`);
-      toast.info("You have been logged out.");
-      return response.data;
+      await axios.post(`/api/auth/logout`);
+      clearAuthHeader();
+
+      toast.success('You are logged out');
     } catch (error) {
-      const message =
-        error.response?.data?.message || "Logout failed. Please try again.";
-      toast.error(message);
-      return thunkAPI.rejectWithValue(message);
+      toast.error(error.message || 'Something went wrong');
+
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const persistedToken = thunkAPI.getState().auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const { data } = await axios.get('/api/user/current');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  'auth/avatar',
+  async (formData, thunkAPI) => {
+    try {
+      const { data } = await axios.patch('/api/user/avatars', formData);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//Method to Update User
+export const updateUserData = createAsyncThunk(
+  'api/user',
+  async (body, thunkAPI) => {
+    const persistedToken = thunkAPI.getState().auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const { data } = await axios.patch('/api/user', body);
+      return data;
+    } catch (error) {
+      toast.error('Request error');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateDailyNorma = createAsyncThunk(
+  `user/updatedailynorma`,
+  async (newDailyNorma, thunkAPI) => {
+    try {
+      const { data } = await axios.patch(`/api/user/waterrate`, {
+        waterRate: newDailyNorma,
+      });
+      return data.waterRate;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
