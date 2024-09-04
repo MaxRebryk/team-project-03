@@ -2,8 +2,11 @@ import { useEffect, useRef } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import css from './LogOut.module.css';
 import clsx from 'clsx';
+// import { logOut } from 'redux/auth/operations';
+import { useDispatchs } from 'react-redux';
 
 export default function LogOut({ logOutModalIsOpen, closeLogOut }) {
+  // const dispatch = useDispatchs();
   const modalRef = useRef(null);
   useEffect(() => {
     const handleKeyDown = event => {
@@ -26,7 +29,8 @@ export default function LogOut({ logOutModalIsOpen, closeLogOut }) {
     };
   }, [logOutModalIsOpen, closeLogOut]);
   //==============================submit=============
-  const handleSubmit = () => {
+  const handleClick = () => {
+    // dispatch(logOut());
     closeLogOut();
   };
   return (
@@ -47,9 +51,9 @@ export default function LogOut({ logOutModalIsOpen, closeLogOut }) {
         <p className={css['title']}>Do you really want to leave?</p>
         <div className={css['button-block']}>
           <button
-            type="submit"
+            type="button"
             className={css['button-out']}
-            onSubmit={handleSubmit}
+            onClick={handleClick}
           >
             Log out
           </button>
