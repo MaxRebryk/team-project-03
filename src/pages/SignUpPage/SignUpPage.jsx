@@ -8,7 +8,7 @@ import {
 
 import Loader from 'components/Loader/Loader';
 import { useSelector } from 'react-redux';
-import { selectIsLoading } from 'redux/auth/auth.selectors';
+import { selectIsLoading } from '..//../redux/auth/auth.selectors';
 
 const SignUpPage = () => {
   const isLoading = useSelector(selectIsLoading);

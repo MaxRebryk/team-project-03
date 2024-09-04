@@ -1,8 +1,8 @@
-// index.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-import App from 'components/App.jsx';
+import { Provider } from 'react-redux'; // Import Provider
+import { store } from './redux/store'; // Import your Redux store
+import App from './components/App'; // Make sure the import path is correct
 import './index.css';
 import 'modern-normalize';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -16,22 +16,12 @@ if (rootElement) {
 
   // Render the application
   root.render(
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}> {/* Wrap App with Provider */}
+      <Router basename="/team-project-03"> {/* Wrap with Router and set basename */}
+        <App />
+      </Router>
+    </Provider>
   );
 } else {
   console.error('Root element not found');
 }
-
-=======
-import App from './components/App'; // Adjust the path if necessary
-import './index.css'; // Optional: Include any global styles
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-

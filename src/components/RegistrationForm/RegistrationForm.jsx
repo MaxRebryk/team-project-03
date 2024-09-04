@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { register } from 'redux/auth/operations';
+import { register } from '..//../redux/auth/operations';
 import {
   SignUpContainer,
   SightUp,
@@ -13,11 +13,9 @@ import {
   StyledBtn,
   StyledField,
   StyledForm,
-  StyledLabel,
-  GoogleSignInBtn,
+  Styledlabel,
 } from './RegistrationForm.styled.js';
 import sprite from '../../images/sprite.svg';
-
 const initialValues = {
   email: '',
   password: '',
@@ -51,43 +49,6 @@ const RegistrationForm = () => {
     resetForm();
   };
 
-  const handleGoogleSignIn = async (response) => {
-    const { credential } = response;
-
-    // Send the ID token to your backend for verification
-    // Example:
-    const res = await fetch('/api/auth/google-signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ idToken: credential }),
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      // Handle successful sign-in
-      navigate('/dashboard');
-    } else {
-      // Handle sign-in error
-      console.error('Google Sign-In failed');
-    }
-  };
-
-  // Use Effect to load the Google API
-  React.useEffect(() => {
-    window.google.accounts.id.initialize({
-      client_id: 'GOOGLE_AUTH_CLIENT_ID',
-      callback: handleGoogleSignIn,
-    });
-
-    window.google.accounts.id.renderButton(
-      document.getElementById('google-sign-in-button'),
-      { theme: 'outline', size: 'large' }
-    );
-  }, []);
-
   return (
     <SignUpContainer>
       <Formik
@@ -98,7 +59,7 @@ const RegistrationForm = () => {
         {({ isSubmitting, touched, errors }) => (
           <StyledForm>
             <h2>Sign Up</h2>
-            <StyledLabel htmlFor="email">Enter your email</StyledLabel>
+            <Styledlabel htmlFor="email">Enter your email</Styledlabel>
             <StyledField
               type="email"
               name="email"
@@ -109,7 +70,7 @@ const RegistrationForm = () => {
             />
             <ErMsg name="email" component="div" />
 
-            <StyledLabel htmlFor="password">
+            <Styledlabel htmlFor="password">
               Enter your password
               <StyledBtn onClick={() => setShowPassword(!showPassword)}>
                 <svg>
@@ -118,7 +79,7 @@ const RegistrationForm = () => {
                   ></use>
                 </svg>
               </StyledBtn>
-            </StyledLabel>
+            </Styledlabel>
             <StyledField
               type={showPassword ? 'text' : 'password'}
               name="password"
@@ -130,7 +91,7 @@ const RegistrationForm = () => {
 
             <ErMsg name="password" component="div" />
 
-            <StyledLabel htmlFor="repeatPassword">
+            <Styledlabel htmlFor="repeatPassword">
               Repeat Password
               <StyledBtn
                 onClick={() => setShowRepeatPassword(!showRepeatPassword)}
@@ -143,7 +104,7 @@ const RegistrationForm = () => {
                   ></use>
                 </svg>
               </StyledBtn>
-            </StyledLabel>
+            </Styledlabel>
             <StyledField
               type={showRepeatPassword ? 'text' : 'password'}
               name="repeatPassword"
@@ -162,8 +123,6 @@ const RegistrationForm = () => {
               Sign Up
             </FormBtnStyled>
             <SightUp onClick={() => navigate('/signin')}>Sign in</SightUp>
-
-            <div id="google-sign-in-button"></div>
           </StyledForm>
         )}
       </Formik>
