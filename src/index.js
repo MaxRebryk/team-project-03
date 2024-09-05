@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux'; // Import Provider
-import { store } from './redux/store'; // Import your Redux store
 import App from './components/App'; // Make sure the import path is correct
 import './index.css';
 import 'modern-normalize';
