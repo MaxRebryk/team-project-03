@@ -16,7 +16,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/api/auth/register`, credentials);
+      const { data } = await axios.post(`/auth/register`, credentials);
 
       toast.success('Registration successful');
 
@@ -33,7 +33,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/api/auth/login`, credentials);
+      const { data } = await axios.post(`/auth/login`, credentials);
 
       setAuthHeader(data.token);
 
@@ -48,21 +48,18 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk(
-  '/api/auth/logout',
-  async (_, thunkAPI) => {
-    try {
-      await axios.post(`/api/auth/logout`);
-      clearAuthHeader();
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post(`/auth/logout`);
+    clearAuthHeader();
 
-      toast.success('You are logged out');
-    } catch (error) {
-      toast.error(error.message || 'Something went wrong');
+    toast.success('You are logged out');
+  } catch (error) {
+    toast.error(error.message || 'Something went wrong');
 
-      return thunkAPI.rejectWithValue(error.message);
-    }
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
@@ -73,7 +70,7 @@ export const refreshUser = createAsyncThunk(
     }
     setAuthHeader(persistedToken);
     try {
-      const { data } = await axios.get('/api/user/current');
+      const { data } = await axios.get('/user/:id/info');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -82,10 +79,10 @@ export const refreshUser = createAsyncThunk(
 );
 
 export const updateAvatar = createAsyncThunk(
-  'auth/avatar',
+  'auth/:id/info/photo',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/api/user/avatars', formData);
+      const { data } = await axios.patch('/user/:id/info/photo', formData);
 
       return data;
     } catch (error) {
@@ -96,7 +93,7 @@ export const updateAvatar = createAsyncThunk(
 
 //Method to Update User
 export const updateUserData = createAsyncThunk(
-  'api/user',
+  '/user/:id/info/update',
   async (body, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.token;
     if (persistedToken === null) {
@@ -104,7 +101,7 @@ export const updateUserData = createAsyncThunk(
     }
     setAuthHeader(persistedToken);
     try {
-      const { data } = await axios.patch('/api/user', body);
+      const { data } = await axios.patch('/user/:id/info/update', body);
       return data;
     } catch (error) {
       toast.error('Request error');
@@ -114,10 +111,10 @@ export const updateUserData = createAsyncThunk(
 );
 
 export const updateDailyNorma = createAsyncThunk(
-  `user/updatedailynorma`,
+  '/water-rate',
   async (newDailyNorma, thunkAPI) => {
     try {
-      const { data } = await axios.patch(`/api/user/waterrate`, {
+      const { data } = await axios.patch('/water-rate', {
         waterRate: newDailyNorma,
       });
       return data.waterRate;

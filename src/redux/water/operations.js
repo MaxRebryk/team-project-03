@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const addWaterRecord = createAsyncThunk(
-  'water/addWaterRecord',
+  '/water',
   async (record, thunkAPI) => {
     try {
       const { data } = await axios.post('/water', record);
@@ -14,7 +14,7 @@ export const addWaterRecord = createAsyncThunk(
 );
 
 export const getWaterRecord = createAsyncThunk(
-  'water/getWaterRecord',
+  'water/:id',
   async (recordId, thunkAPI) => {
     try {
       const response = await axios.get(`/water/${recordId}`);
@@ -28,10 +28,10 @@ export const getWaterRecord = createAsyncThunk(
 );
 
 export const updateWaterRecord = createAsyncThunk(
-  'water/updateWaterRecord',
+  'water/:id',
   async ({ recordId, amount, time }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/api/water/${recordId}`, {
+      const response = await axios.patch(`/water/${recordId}`, {
         amount,
         time,
       });
