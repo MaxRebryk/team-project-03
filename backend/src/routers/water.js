@@ -37,3 +37,6 @@ router.get('/daily/:date', ctrlWrapper(fetchDailyController));
 router.get('/monthly/:month', ctrlWrapper(fetchMonthlyController));
 
 export default router;
+
+
+//відповідає за обробку всіх запитів

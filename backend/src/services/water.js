@@ -38,7 +38,7 @@ export const fetchDailyService = async (userId, dateString) => {
   const [year, month, day] = dateString.split('-');
   const startDate = new Date(`${year}-${month}-${day}T00:00:00Z`);
   const endDate = new Date(startDate);
-  endDate.setUTCDate(endDate.getUTCDate() + 1);
+  endDate.setUTCDate(endDate.getUTCDate() + 1); //охоплення всього дня
 
   try {
     //отримання даних
