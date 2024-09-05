@@ -2,11 +2,12 @@ import { Outlet } from 'react-router-dom'; // Import Outlet correctly
 import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify styles
 import { Suspense } from 'react'; // Import Suspense
-//import  Header  from '../components/Header/Header.jsx'; // Import Header, check if it's a named or default export
+import Header from '../components/Header/Header.jsx'; // Import Header, check if it's a named or default export
 
 export const Layout = () => {
   return (
     <>
+      <Header />
       <Suspense fallback={<div>Loading...</div>}>
         {' '}
         {/* Provide a fallback component for Suspense */}
