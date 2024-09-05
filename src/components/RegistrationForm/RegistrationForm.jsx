@@ -3,19 +3,23 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { register } from '..//../redux/auth/operations';
+import { register } from '../../redux/auth/operations';
 import {
   SignUpContainer,
   SightUp,
   ErMsg,
   FormBtnStyled,
+  GoogleBtnStyled, // Added for Google Button
   BottleImg,
   StyledBtn,
   StyledField,
   StyledForm,
   Styledlabel,
+  FormHead,
 } from './RegistrationForm.styled.js';
 import sprite from '../../images/sprite.svg';
+import { FcGoogle } from 'react-icons/fc'; // Import Google icon
+
 const initialValues = {
   email: '',
   password: '',
@@ -49,6 +53,11 @@ const RegistrationForm = () => {
     resetForm();
   };
 
+  const handleLogInWithPopUp = () => {
+    // Implementation for handling Google login popup
+    console.log('Handle Google login with popup');
+  };
+
   return (
     <SignUpContainer>
       <Formik
@@ -58,7 +67,8 @@ const RegistrationForm = () => {
       >
         {({ isSubmitting, touched, errors }) => (
           <StyledForm>
-            <h2>Sign Up</h2>
+            <FormHead>Sign Up</FormHead>
+
             <Styledlabel htmlFor="email">Enter your email</Styledlabel>
             <StyledField
               type="email"
@@ -88,7 +98,6 @@ const RegistrationForm = () => {
               error={touched.password && errors.password ? 'true' : 'false'}
               autoComplete="new-password"
             />
-
             <ErMsg name="password" component="div" />
 
             <Styledlabel htmlFor="repeatPassword">
@@ -122,6 +131,16 @@ const RegistrationForm = () => {
             <FormBtnStyled type="submit" disabled={isSubmitting}>
               Sign Up
             </FormBtnStyled>
+
+            {/* Google Sign-In Button */}
+            <GoogleBtnStyled
+              onClick={handleLogInWithPopUp}
+              type="button"
+            >
+              <FcGoogle style={{ width: 25, height: 25, marginRight: 10 }} />
+              Google
+            </GoogleBtnStyled>
+
             <SightUp onClick={() => navigate('/signin')}>Sign in</SightUp>
           </StyledForm>
         )}

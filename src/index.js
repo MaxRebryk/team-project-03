@@ -16,8 +16,12 @@ if (rootElement) {
 
   // Render the application
   root.render(
-    <Provider store={store}> {/* Wrap App with Provider */}
-      <Router basename="/team-project-03"> {/* Wrap with Router and set basename */}
+    <Provider store={store}>
+      {' '}
+      {/* Wrap App with Provider */}
+      <Router basename="/team-project-03">
+        {' '}
+        {/* Wrap with Router and set basename */}
         <App />
       </Router>
     </Provider>
