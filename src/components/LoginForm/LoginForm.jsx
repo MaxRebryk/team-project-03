@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { useId, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import sprite from '../../images/sprite.svg';
 
 const UserSchema = Yup.object().shape({
   email: Yup.string()
@@ -94,9 +95,7 @@ export default function LoginForm() {
               >
                 <svg className={style.icon}>
                   <use
-                    href={`../../../public/icons/symbol-defs.svg${
-                      showPassword ? 'eye-slash' : 'eye'
-                    }`}
+                    href={sprite + (showPassword ? '#eye-show' : '#eye-hide')}
                   />
                 </svg>
               </span>
