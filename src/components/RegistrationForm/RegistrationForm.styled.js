@@ -99,6 +99,7 @@ export const StyledForm = styled(Form)`
 export const ErMsg = styled(ErrorMessage)`
   font-size: 12px;
   color: ${baseTheme.colors.red};
+  margin-top: 4px;  /* Adjust space between field and error message */
 `;
 
 export const StyledField = styled(Field)`
@@ -116,7 +117,7 @@ export const StyledField = styled(Field)`
       error === 'true' ? baseTheme.colors.red : baseTheme.colors.violet_light};
   background: ${baseTheme.colors.white};
   &::placeholder {
-    color: ${baseTheme.colors.violet_light};
+    color: #9EBBFF; // Placeholder text color
     font-size: 16px;
     font-weight: 400;
     line-height: 1.23;
@@ -157,7 +158,47 @@ export const FormBtnStyled = styled.button`
     line-height: 1.33;
   }
 `;
-export const StyledLabel = styled.label`
+
+export const GoogleBtnStyled = styled.button`
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  background: #4285f4;  // Google Blue Color
+  color: ${baseTheme.colors.white};
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  transition: background 0.3s ease;
+  
+  &:hover {
+    background: #357ae8;  // Darker Google Blue Color
+  }
+
+  &:active {
+    background: #3367d6;  // Even Darker Google Blue Color
+  }
+  
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  & .google-icon {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+export const Styledlabel = styled.label`
   margin-top: 16px;
   color: ${baseTheme.colors.black};
   position: relative;
@@ -186,23 +227,13 @@ export const StyledBtn = styled.div`
   top: calc(50% + 34px);
   right: 4%;
   cursor: pointer;
+
   & svg {
-    width: 16px;
-    height: 16px;
-    border-radius: 30px;
-    border: transparent;
+    width: 24px;  // Increased size for visibility
+    height: 24px; // Increased size for visibility
   }
 
   & use {
-    fill: ${baseTheme.colors.blue};
+    fill: #9EBBFF; // Color for eye icons
   }
-`;
-
-export const GoogleSignInBtn = styled.div`
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  cursor: pointer;
 `;
