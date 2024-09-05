@@ -16,7 +16,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/api/auth/register`, credentials);
+      const { data } = await axios.post(`/auth/register`, credentials);
 
       toast.success('Registration successful');
 
@@ -33,9 +33,9 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/api/auth/login`, credentials);
-
-      setAuthHeader(data.token);
+      const { data } = await axios.post(`/auth/login`, credentials);
+      console.log(data);
+      setAuthHeader(data.data.accessToken);
 
       toast.success('Login successful');
 
@@ -52,7 +52,7 @@ export const logOut = createAsyncThunk(
   '/api/auth/logout',
   async (_, thunkAPI) => {
     try {
-      await axios.post(`/api/auth/logout`);
+      await axios.post(`/auth/logout`);
       clearAuthHeader();
 
       toast.success('You are logged out');
@@ -73,7 +73,7 @@ export const refreshUser = createAsyncThunk(
     }
     setAuthHeader(persistedToken);
     try {
-      const { data } = await axios.get('/api/user/current');
+      const { data } = await axios.get('/user/current');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -85,7 +85,7 @@ export const updateAvatar = createAsyncThunk(
   'auth/avatar',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/api/user/avatars', formData);
+      const { data } = await axios.patch('/user/avatars', formData);
 
       return data;
     } catch (error) {
@@ -104,7 +104,7 @@ export const updateUserData = createAsyncThunk(
     }
     setAuthHeader(persistedToken);
     try {
-      const { data } = await axios.patch('/api/user', body);
+      const { data } = await axios.patch('/user', body);
       return data;
     } catch (error) {
       toast.error('Request error');
@@ -117,7 +117,7 @@ export const updateDailyNorma = createAsyncThunk(
   `user/updatedailynorma`,
   async (newDailyNorma, thunkAPI) => {
     try {
-      const { data } = await axios.patch(`/api/user/waterrate`, {
+      const { data } = await axios.patch(`/user/waterrate`, {
         waterRate: newDailyNorma,
       });
       return data.waterRate;

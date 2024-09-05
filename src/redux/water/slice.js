@@ -3,6 +3,7 @@ import {
   addWaterRecord,
   getWaterRecord,
   updateWaterRecord,
+  getMonthlyRecord,
 } from './operations';
 
 const waterSlice = createSlice({
@@ -26,6 +27,18 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(addWaterRecord.rejected, state => {
+        state.isLoading = false;
+        state.error = true;
+      })
+      .addCase(getMonthlyRecord.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getMonthlyRecord.fulfilled, (state, action) => {
+        state.monthlyRecords = action.payload.dailyResults;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getMonthlyRecord.rejected, state => {
         state.isLoading = false;
         state.error = true;
       })
