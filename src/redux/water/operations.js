@@ -20,7 +20,7 @@ export const getMonthlyRecord = createAsyncThunk(
     const date = new Date(userData);
     const year = date.getFullYear();
     const mongth = date.getMonth().toString().padStart(2, '0');
-    const END_POINT = `/monthly/${year}-${mongth}`;
+    const END_POINT = `/water/monthly/${year}-${mongth}-01`;
     const url = END_POINT;
 
     try {

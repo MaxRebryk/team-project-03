@@ -1,16 +1,11 @@
 import style from './MonthStatsTable.module.css';
-// import {useState} from 'react'
 import icons from '../../images/icons.svg';
-import { formatDate, getData } from './helper';
+import { formatDate} from './helper';
 import { useState } from 'react';
 import DayItem from './DayItem/DayItem';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthlyRecord } from '../../redux/water/operations';
-
-// const items = getData();
-
-const result = Array.from({ length: 30 }).fill(0);
 
 const MonthStatsTable = () => {
   const dispatch = useDispatch();
@@ -21,12 +16,7 @@ const MonthStatsTable = () => {
     dispatch(getMonthlyRecord(date));
   }, [date]);
 
-  const filteredItems = items.reduce((result, item) => {
-    result[item.date] = result[item.date] || 0;
-    result[item.date] += item.amount;
 
-    return result;
-  }, result);
 
   const handlePreviousDateClick = () => {
     const newDate = new Date(date);
@@ -58,7 +48,7 @@ const MonthStatsTable = () => {
         </div>
       </div>
       <div className={style.containerWithDays}>
-        {filteredItems.map((item, i) => {
+        {items.map((item, i) => {
           return (
             <li key={i}>
               <DayItem data={item} index={i} />

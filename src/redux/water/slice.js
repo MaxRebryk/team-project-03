@@ -34,7 +34,7 @@ const waterSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getMonthlyRecord.fulfilled, (state, action) => {
-        state.monthlyRecords = action.payload;
+        state.monthlyRecords = action.payload.dailyResults;
         state.isLoading = false;
         state.error = null;
       })

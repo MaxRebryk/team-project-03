@@ -2,8 +2,7 @@ import style from './DayItem.module.css';
 // import {useState} from 'react'
 
 const DayItem = ({ data, index }) => {
-  const norma = 1500;
-  const percent = Math.round((data / norma) * 100);
+  const percent = data.consumptionPercentage;
   return (
     <div className={style.container}>
       <div className={style.containerForDay}>
