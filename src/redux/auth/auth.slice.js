@@ -115,4 +115,5 @@ export const persistedContactsReducer = persistReducer(
   authSlice.reducer
 );
 
+// Use named export to match import statement
 export default authSlice.reducer;
