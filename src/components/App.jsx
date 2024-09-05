@@ -14,7 +14,9 @@ const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const SignInPage = lazy(() => import('../pages/SignInPage/SignInPage'));
 const SignUpPage = lazy(() => import('../pages/SignUpPage/SignUpPage'));
-const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
+const NotFoundPage = lazy(() =>
+  import('../pages/NotFoundPage/NotFoundPage.jsx')
+);
 
 export const App = () => {
   const dispatch = useDispatch();

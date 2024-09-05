@@ -6,7 +6,7 @@ const DayItem = ({ data, index }) => {
   return (
     <div className={style.container}>
       <div className={style.containerForDay}>
-        <p className={style.numberOfDay}>{index}</p>
+        <p className={style.numberOfDay}>{index + 1}</p>
       </div>
       <div>
         <p className={style.percentOfDay}>{percent} %</p>
