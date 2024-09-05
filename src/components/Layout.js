@@ -7,7 +7,6 @@ import Header from '../components/Header/Header'; // Import Header
 export const Layout = () => {
   return (
     <>
-      <Header />
       <Header /> {/* Render the Header component */}
       <Suspense fallback={<div>Loading...</div>}>
         {/* Provide a fallback component for Suspense */}
