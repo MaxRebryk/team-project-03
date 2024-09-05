@@ -6,6 +6,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0%;
+  left: 0%;
   transition: opacity 250ms linear, visibility 250ms linear;
   overflow: auto;
   &.is-hidden {
@@ -194,6 +195,7 @@
   gap: 12px;
 }
 .password-box {
+  width: max-content;
   display: flex;
   flex-direction: column;
   gap: 8px;

@@ -6,6 +6,7 @@ import { HiOutlineUserCircle } from 'react-icons/hi2';
 import css from './AuthNav.module.css';
 import Logo from '../../../images/logo.png';
 import Ellipse from '../Ellipse.png';
+import { routes } from 'routes/routes';
 
 import LogOut from '../LogOut/Logout';
 import ModalSetting from '../ModalSetting/ModalSetting';
@@ -15,7 +16,7 @@ import ModalUser from '../ModalUser/ModalUser';
 export default function AuthNav() {
   //Перевіряє чи User залогінений
   // const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   // const user = useSelector();
   const user = { name: null, email: 'max@BiLogoGmail.com', photo: null };
   const { name, email, photo } = user;
@@ -59,17 +60,17 @@ export default function AuthNav() {
   //==================================
   const navigate = useNavigate();
   const handleSignInClick = () => {
-    navigate('/signin');
+    navigate(routes.LOGIN);
   };
   return (
     <div className={css.wrap}>
       {isLoggedIn ? (
-        <NavLink to="/">
+        <NavLink to={routes.HOMEPAGE}>
           {/* Home Page */}
           <img src={Logo} width="102" height="48" alt="Logo" />
         </NavLink>
       ) : (
-        <NavLink to="/">
+        <NavLink to={routes.WELCOMEPAGE}>
           {/* Welcom Page */}
           <img src={Logo} width="102" height="48" alt="Logo" />
         </NavLink>
