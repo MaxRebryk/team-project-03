@@ -34,8 +34,10 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post(`/auth/login`, credentials);
-
       setAuthHeader(data.token);
+      console.log(data);
+      setAuthHeader(data.data.accessToken);
+
 
       toast.success('Login successful');
 
@@ -48,10 +50,13 @@ export const logIn = createAsyncThunk(
   }
 );
 
+
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post(`/auth/logout`);
+    await axios.post('/auth/logout');
     clearAuthHeader();
+
+
 
     toast.success('You are logged out');
   } catch (error) {
@@ -83,7 +88,6 @@ export const updateAvatar = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const { data } = await axios.patch('/user/:id/info/photo', formData);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux'; // Import Provider
+import store from './redux/store.js'; // Import your Redux store
 import App from './components/App'; // Make sure the import path is correct
 import './index.css';
 import 'modern-normalize';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './redux/store.js';
 
 // Get the root element
 const rootElement = document.getElementById('root');
