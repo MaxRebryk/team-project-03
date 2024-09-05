@@ -1,11 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import { signin } from '../../redux/auth/operatoins';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { logIn } from '../../redux/auth/operations';
+import toast, { Toaster } from 'react-hot-toast';
 import style from './LoginForm.module.css';
 import * as Yup from 'yup';
 import { useId, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const UserSchema = Yup.object().shape({
   email: Yup.string()
@@ -30,26 +31,30 @@ export default function LoginForm() {
     setShowPassword(prevState => !prevState);
   };
 
-  const handleSubmit = async (values, actions) => {
-    try {
-      await dispatch(signin(values)).unwrap();
-      navigate('/home');
-    } catch (error) {
-      toast.error('Login failed. Please check your credentials and try again.');
-    }
+  const handlSubmit = (values, actions) => {
+    dispatch(logIn(values))
+      .unwrap()
+      .then(() => {
+        navigate('/home');
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error("This didn't work.");
+      });
     actions.setSubmitting(false);
     actions.resetForm();
   };
 
   return (
-    <div className={style.container}>
+    <div className="{style.container}">
+      <Toaster position="top-center" reverseOrder={false} />
       <Formik
         initialValues={{
           email: '',
           password: '',
         }}
         validationSchema={UserSchema}
-        onSubmit={handleSubmit}
+        onSubmit={handlSubmit}
       >
         {({ isSubmitting, touched, errors }) => (
           <Form className={style.form} autoComplete="off">
@@ -73,29 +78,29 @@ export default function LoginForm() {
             </label>
             <label className={style.label} htmlFor={pswFindId}>
               Enter your password
-              <div className={style.passwordWrapper}>
-                <Field
-                  id={pswFindId}
-                  className={style.form_input}
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  placeholder="Password"
-                  error={touched.password && errors.password ? 'true' : 'false'}
-                  autoComplete="new-password"
-                />
-                <span
-                  onClick={togglePasswordVisibility}
-                  className={style.togglePassword}
-                >
-                  <svg className={style.icon}>
-                    <use
-                      href={`../../../public/icons/sprite.svg#${
-                        showPassword ? 'eye-slash' : 'eye'
-                      }`}
-                    />
-                  </svg>
-                </span>
-              </div>
+              {/* <div className={style.passwordWrapper}> */}
+              <Field
+                id={pswFindId}
+                className={style.form_input}
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                error={touched.password && errors.password ? 'true' : 'false'}
+                autoComplete="new-password"
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                className={style.togglePassword}
+              >
+                <svg className={style.icon}>
+                  <use
+                    href={`../../../public/icons/symbol-defs.svg${
+                      showPassword ? 'eye-slash' : 'eye'
+                    }`}
+                  />
+                </svg>
+              </span>
+              {/* </div> */}
               <ErrorMessage
                 className={style.error}
                 name="password"
@@ -105,22 +110,16 @@ export default function LoginForm() {
             <button className={style.btn} type="submit" disabled={isSubmitting}>
               Sign In
             </button>
+            <NavLink className={style.link} to={'/register'}>
+              Sign Up
+            </NavLink>
+            <NavLink className={style.link} to={'/forgot-password'}>
+              Forgot your password?
+            </NavLink>
           </Form>
         )}
       </Formik>
-      <div className={style.navigation}>
-        <p>
-          Don't have an account?{' '}
-          <a href="/signup" className={style.link}>
-            Sign Up
-          </a>
-        </p>
-        <p>
-          <a href="/forgot-password" className={style.link}>
-            Forgot your password?
-          </a>
-        </p>
-      </div>
+      <div className={style.bottle}></div>
     </div>
   );
 }
