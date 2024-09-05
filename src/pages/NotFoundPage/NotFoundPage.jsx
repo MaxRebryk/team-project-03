@@ -1,12 +1,5 @@
-import MonthStatsTable from 'components/MonthStatsTable/MonthStatsTable';
-import { useState } from 'react';
-
 const NotFoundPage = ({}) => {
-  return (
-    <div>
-      <MonthStatsTable />
-    </div>
-  );
+  return <div>NotFoundPage</div>;
 };
 
 export default NotFoundPage;
