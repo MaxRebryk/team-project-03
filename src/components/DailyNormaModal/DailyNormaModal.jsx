@@ -5,6 +5,13 @@ import style from './DailyNormaModal.module.css';
 import { useCallback, useEffect } from 'react';
 import icons from '../../images/icons.svg';
 
+const enableBody = () => {
+  document.body.style.overflow = 'auto';
+};
+const disableBody = () => {
+  document.body.style.overflow = 'hidden';
+};
+
 const DailyNormaModal = ({ isOpen, closeModal }) => {
   const handleBackdropClick = useCallback(e => {
     if (e.target === e.currentTarget) {
@@ -26,8 +33,10 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
       return;
     }
     window.addEventListener('keydown', onWindowKeydown);
+    disableBody();
     return () => {
       window.removeEventListener('keydown', onWindowKeydown);
+      enableBody();
     };
   }, [onWindowKeydown]);
 
@@ -48,12 +57,7 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
         <div className={style.contentOfModal}>
           <DailyFormula />
           <DailyCalculate />
-          <DailyUserValue />
-        </div>
-        <div className={style.btnContainer}>
-          <button className={style.btn} onClick={closeModal}>
-            Save
-          </button>
+          <DailyUserValue closeModal={closeModal} />
         </div>
       </div>
     </div>

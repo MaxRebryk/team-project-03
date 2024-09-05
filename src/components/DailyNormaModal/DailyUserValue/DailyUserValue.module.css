@@ -1,6 +1,14 @@
 .userValue {
-  padding-bottom: 14px;
+  /* padding-bottom: 14px; */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
+
+/* .userValueContainer {
+  display: flex;
+  gap: ;
+} */
 
 .userValueDescription {
   font-family: 'Roboto';
@@ -27,4 +35,36 @@
 .inputValue:active {
   outline: none;
   color: #407bff;
+}
+
+.btnContainer {
+  text-align: end;
+  padding-top: ;
+}
+
+.btn {
+  cursor: pointer;
+  width: 160px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  background-color: #407bff;
+  color: white;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.closeBtn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-top: 4px;
+}
+
+@media (max-width: 767px) {
+  .btn {
+    width: 100%;
+    font-size: 16px;
+  }
 }
