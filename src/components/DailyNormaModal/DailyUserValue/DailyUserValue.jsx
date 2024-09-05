@@ -14,7 +14,7 @@ const DailyUserValue = ({ closeModal }) => {
   const [userValue, setUserValue] = useState();
 
   const handleClick = () => {
-    const record = { date: Date.now(), volume: +userValue };
+    const record = { date: new Date().toISOString(), volume: +userValue };
     setIsFirstOpen(false);
     dispatch(addWaterRecord(record));
   };
