@@ -11,15 +11,17 @@ import { routes } from 'routes/routes';
 import LogOut from '../LogOut/Logout';
 import ModalSetting from '../ModalSetting/ModalSetting';
 import ModalUser from '../ModalUser/ModalUser';
-// import {} from "../../../redux/auth/auth.slice"
+import { selectIsLoggedIn } from '../../../redux/auth/auth.selectors';
+import { selectUser } from '../../../redux/auth/auth.selectors';
 
 export default function AuthNav() {
-  //Перевіряє чи User залогінений
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoggedIn = false;
-  // const user = useSelector();
-  const user = { name: null, email: 'max@BiLogoGmail.com', photo: null };
-  const { name, email, photo } = user;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = true;
+  const user = useSelector(selectUser);
+  console.log(user);
+
+  const userTest = { name: null, email: 'max@BiLogoGmail.com', photo: null };
+  const { name, email, photo } = userTest;
 
   //=========modalOpenSetting===================
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -116,3 +118,5 @@ export default function AuthNav() {
     </div>
   );
 }
+// andrii@gmail.com
+// 1111111111
