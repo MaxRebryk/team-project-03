@@ -14,7 +14,7 @@ const ForgotPwdSchema = Yup.object().shape({
     .required('Email is required!'),
 });
 
-export default function LoginForm() {
+export default function ForgotPwdForm() {
   const dispatch = useDispatch();
 
   const handlSubmit = async (values, actions) => {
