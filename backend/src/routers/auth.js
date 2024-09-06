@@ -53,10 +53,6 @@ router.post(
 
 router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
 
-router.post(
-  '/confirm-oauth',
-  validateBody(loginWithGoogleOAuthSchema),
-  ctrlWrapper(loginWithGoogleController),
-);
+router.post('/confirm-oauth', loginWithGoogleController);
 
 export default router;

@@ -3,6 +3,7 @@ import {
   addWaterRecord,
   getWaterRecord,
   updateWaterRecord,
+  getMonthlyRecord,
 } from './operations';
 
 const waterSlice = createSlice({
@@ -34,7 +35,7 @@ const waterSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getMonthlyRecord.fulfilled, (state, action) => {
-        state.monthlyRecords = action.payload;
+        state.monthlyRecords = action.payload.dailyResults;
         state.isLoading = false;
         state.error = null;
       })
@@ -77,7 +78,7 @@ const waterSlice = createSlice({
   },
 });
 
-export const waterReducer = waterSlice.reducer;
+export default waterSlice.reducer;
 export const selectCurrentRecord = state => state.water.currentRecord;
 export const selectIsLoading = state => state.water.isLoading;
 export const selectError = state => state.water.error;
