@@ -15,7 +15,7 @@ const HomePage = () => {
         <WaterRatioPanel />
       </div>
 
-      {/* <MonthStatsTable /> */}
+      <MonthStatsTable />
     </section>
   );
 };
