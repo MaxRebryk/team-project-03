@@ -38,7 +38,6 @@ export const logIn = createAsyncThunk(
       console.log(data);
       setAuthHeader(data.data.accessToken);
 
-
       toast.success('Login successful');
 
       return data;
@@ -50,13 +49,10 @@ export const logIn = createAsyncThunk(
   }
 );
 
-
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/auth/logout');
     clearAuthHeader();
-
-
 
     toast.success('You are logged out');
   } catch (error) {
@@ -124,6 +120,18 @@ export const updateDailyNorma = createAsyncThunk(
       return data.waterRate;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const resetPwdEmail = createAsyncThunk(
+  'auth/send-reset-email',
+  async (email, thunkAPI) => {
+    try {
+      const response = await axios.post('auth/send-reset-email', { email });
+      return response.data;
+    } catch (error) {
+      throw thunkAPI.rejectWithValue(error.message);
     }
   }
 );

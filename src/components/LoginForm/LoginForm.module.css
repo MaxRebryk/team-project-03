@@ -83,12 +83,16 @@
 }
 
 .icon {
-  margin-left: -15px;
-  width: 16px;
-  height: 16px;
-  fill: #407bff;
-  transform: translateY(20%);
-  top: calc(50% + 34px);
+  /* margin-left: -15px; */
+  width: 24px;
+  height: 24px;
+  stroke: #407bff;
+  /* transform: translateY(-130%); */
+  top: calc(15% + 34px);
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  right: 4%;
 }
 
 .form_input {
@@ -167,20 +171,6 @@
   }
 }
 
-.togglePassword {
-  position: absolute;
-  border: none;
-  top: calc(50% + 34px);
-  right: 4%;
-  cursor: pointer;
-  color: grey;
-  width: 16px;
-  height: 16px;
-  border-radius: 30px;
-  border: transparent;
-  outline-color: none;
-}
-
 .link {
   color: var(--primary-blue-color, rgb(64, 123, 255));
   font-family: var(--main-font);
@@ -191,6 +181,7 @@
   transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 16px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .link:hover,
@@ -199,7 +190,7 @@
 }
 
 .bottle {
-  background-image: url("../../images/home/bottle-mob-1x.png");
+  background-image: url('../../images/home/bottle-mob-1x.png');
   background-size: contain;
   background-repeat: no-repeat;
   width: 280px;
@@ -216,13 +207,13 @@
   (min-resolution: 192dpi),
   (min-resolution: 2dppx) {
   .bottle {
-    background-image: url("../../images/home/bottle-mob-2x.png");
+    background-image: url('../../images/home/bottle-mob-2x.png');
   }
 }
 
 @media screen and (min-width: 768px) {
   .bottle {
-    background-image: url("../../images/home/bottle-tab-1x.png");
+    background-image: url('../../images/home/bottle-tab-1x.png');
     width: 736px;
     height: 548px;
     background-position: 80px;
@@ -233,14 +224,14 @@
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .bottle {
-      background-image: url("../../images/home/bottle-tab-2x.png");
+      background-image: url('../../images/home/bottle-tab-2x.png');
     }
   }
 }
 
 @media screen and (min-width: 1440px) {
   .bottle {
-    background-image: url("../../images/home/bottle-desk-1x.png");
+    background-image: url('../../images/home/bottle-desk-1x.png');
     width: 916px;
     min-height: 680px;
     margin-top: 0;
@@ -253,7 +244,7 @@
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .bottle {
-      background-image: url("../../images/home/bottle-desk-2x.png");
+      background-image: url('../../images/home/bottle-desk-2x.png');
     }
   }
 }
