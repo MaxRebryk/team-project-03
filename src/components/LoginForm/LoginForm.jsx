@@ -91,7 +91,7 @@ export default function LoginForm() {
               />
               <span
                 onClick={togglePasswordVisibility}
-                className={style.togglePassword}
+                // className={style.togglePassword}
               >
                 <svg className={style.icon}>
                   <use
@@ -109,7 +109,8 @@ export default function LoginForm() {
             <button className={style.btn} type="submit" disabled={isSubmitting}>
               Sign In
             </button>
-            <NavLink className={style.link} to={'/register'}>
+
+            <NavLink className={style.link} to={'/signup'}>
               Sign Up
             </NavLink>
             <NavLink className={style.link} to={'/forgot-password'}>
