@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const addWaterRecord = createAsyncThunk(
-  'water/add',  // Updated action type to avoid conflict
+  'water/add', // Updated action type to avoid conflict
   async (record, thunkAPI) => {
     try {
       const { data } = await axios.post('/water', record);
@@ -18,8 +18,8 @@ export const getMonthlyRecord = createAsyncThunk(
   async (userData, thunkAPI) => {
     const date = new Date(userData);
     const year = date.getFullYear();
-    const month = date.getMonth().toString().padStart(2, '0');  // Fixed typo
-    const END_POINT = `/water/monthly/${year}-${month}-01`;  // Fixed typo
+    const month = date.getMonth().toString().padStart(2, '0'); // Fixed typo
+    const END_POINT = `/water/monthly/${year}-${month}-01`; // Fixed typo
 
     try {
       const response = await axios.get(END_POINT);
@@ -31,7 +31,8 @@ export const getMonthlyRecord = createAsyncThunk(
 );
 
 export const getWaterRecord = createAsyncThunk(
-  'water/get',  // Updated action type to avoid conflict
+  'water/get', // Updated action type to avoid conflict
+
   async (recordId, thunkAPI) => {
     try {
       const response = await axios.get(`/water/${recordId}`);
@@ -45,7 +46,7 @@ export const getWaterRecord = createAsyncThunk(
 );
 
 export const updateWaterRecord = createAsyncThunk(
-  'water/update',  // Updated action type to avoid conflict
+  'water/update', // Updated action type to avoid conflict
   async ({ recordId, amount, time }, thunkAPI) => {
     try {
       const response = await axios.patch(`/water/${recordId}`, {

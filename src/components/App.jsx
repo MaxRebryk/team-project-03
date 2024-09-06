@@ -65,7 +65,8 @@ export const App = () => {
                 <PrivateRoute redirectTo={routes.LOGIN} component={HomePage} />
               }
             />
-            <Route path="*" element={<NotFoundPage />} /> {/* Catch-all route */}
+            <Route path="*" element={<NotFoundPage />} />{' '}
+            {/* Catch-all route */}
           </Route>
         </Routes>
       )}

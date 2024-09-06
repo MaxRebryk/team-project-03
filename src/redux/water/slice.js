@@ -30,6 +30,7 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.error = true;
       })
+
       .addCase(getMonthlyRecord.pending, state => {
         state.isLoading = true;
       })
@@ -42,6 +43,7 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.error = true;
       })
+
       .addCase(getWaterRecord.pending, state => {
         state.isLoading = true;
         state.error = null;
