@@ -44,12 +44,14 @@ export const WelcomeInfoTitle = styled.h2`
   }
 `;
 
-export const WelcomeListTitle = styled.h3`
+export const WelcomeListTitle = styled.h2`
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
+  color: ${baseTheme.colors.black};
   line-height: calc(20 / 18);
   text-align: left;
   margin-bottom: 12px;
+  
 `;
 
 export const WelcomeListContent = styled.ul`
