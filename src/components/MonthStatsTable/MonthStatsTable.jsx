@@ -1,6 +1,6 @@
 import style from './MonthStatsTable.module.css';
 import icons from '../../images/icons.svg';
-import { formatDate} from './helper';
+import { formatDate } from './helper';
 import { useState } from 'react';
 import DayItem from './DayItem/DayItem';
 import { useEffect } from 'react';
@@ -14,9 +14,7 @@ const MonthStatsTable = () => {
 
   useEffect(() => {
     dispatch(getMonthlyRecord(date));
-  }, [date]);
-
-
+  }, [date, dispatch]);
 
   const handlePreviousDateClick = () => {
     const newDate = new Date(date);

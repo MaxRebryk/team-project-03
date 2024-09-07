@@ -1,4 +1,4 @@
-const NotFoundPage = ({}) => {
+const NotFoundPage = () => {
   return <div>NotFoundPage</div>;
 };
 

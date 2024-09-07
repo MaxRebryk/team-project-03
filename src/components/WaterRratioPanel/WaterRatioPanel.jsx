@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import css from './WaterRatioPanel.module.css';
 // import { useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { LuPlusCircle } from 'react-icons/lu';
+import TodayAddWaterModal from 'components/TodayAddWaterModal/TodayAddWaterModal';
 
 export default function WaterRatioPanel() {
   const progres = 20;
@@ -15,6 +17,9 @@ export default function WaterRatioPanel() {
   //   };
 
   // стилі які будуть примінятися при дозягнені певногопрогресу
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const styleZero = {
     fontSize: 16,
     fontWeight: 500,
@@ -51,6 +56,14 @@ export default function WaterRatioPanel() {
     }
   }
 
+  function handleOpenModal() {
+    setIsOpenModal(true);
+  }
+
+  function handleCloseModal() {
+    setIsOpenModal(false);
+  }
+
   return (
     <div>
       <div className={css.conteinerItems}>
@@ -80,11 +93,14 @@ export default function WaterRatioPanel() {
             </p>
           </div>
         </div>
-        <button className={css.btn}>
+        <button className={css.btn} onClick={handleOpenModal}>
           <LuPlusCircle style={{ height: 18, width: 18, marginRight: 13 }} />
           Add Water
         </button>
       </div>
+      {isOpenModal ? (
+        <TodayAddWaterModal onClose={handleCloseModal} />
+      ) : undefined}
     </div>
   );
 }

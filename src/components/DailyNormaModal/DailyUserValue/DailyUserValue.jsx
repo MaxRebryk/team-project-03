@@ -25,7 +25,7 @@ const DailyUserValue = ({ closeModal }) => {
     } else if (!isFirstOpen && !isLoading && error) {
       console.log(error);
     }
-  }, [isLoading, error]);
+  }, [isLoading, error, closeModal, isFirstOpen]);
 
   return (
     <div className={style.userValue}>

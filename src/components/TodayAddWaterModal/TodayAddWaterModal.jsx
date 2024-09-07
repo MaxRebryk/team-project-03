@@ -10,7 +10,7 @@ import { PiMinusLight } from 'react-icons/pi';
 // import addWaterRecord from 'redux/water/operations';
 // import { addWaterRecord } from 'redux/water/operations.js';
 
-const TodayAddWaterModal = () => {
+const TodayAddWaterModal = ({ onClose }) => {
   const [amount, setAmount] = useState(0);
   const [inputAmount, setInputAmount] = useState(amount);
   const [time, setTime] = useState(() => {
@@ -35,9 +35,15 @@ const TodayAddWaterModal = () => {
   // };
 
   return (
-    <div className={css.modal_backdrop}>
+    <div
+      className={css.modal_backdrop}
+      tabIndex={0}
+      onKeyUp={event => {
+        if (event.key === 'Escape') onClose();
+      }}
+    >
       <div className={css.modal_container}>
-        <button className={css.modal_close_button}>
+        <button className={css.modal_close_button} onClick={onClose}>
           <IoCloseOutline className={css.modal_close_icon} />
         </button>
         <h3 className={css.title}>Add water</h3>
