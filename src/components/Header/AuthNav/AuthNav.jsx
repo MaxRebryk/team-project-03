@@ -5,7 +5,6 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import css from './AuthNav.module.css';
 import Logo from '../../../images/logo.png';
-import Ellipse from '../Ellipse.png';
 import { routes } from 'routes/routes';
 
 import LogOut from '../LogOut/Logout';

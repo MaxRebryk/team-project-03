@@ -1,5 +1,5 @@
 import style from './DailyCalculate.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const DailyCalculate = () => {
   const [weight, setWeight] = useState();

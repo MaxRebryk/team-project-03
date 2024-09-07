@@ -13,11 +13,14 @@ const disableBody = () => {
 };
 
 const DailyNormaModal = ({ isOpen, closeModal }) => {
-  const handleBackdropClick = useCallback(e => {
-    if (e.target === e.currentTarget) {
-      closeModal();
-    }
-  }, []);
+  const handleBackdropClick = useCallback(
+    e => {
+      if (e.target === e.currentTarget) {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
 
   const onWindowKeydown = useCallback(
     e => {
