@@ -8,6 +8,7 @@ import { useId, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import sprite from '../../images/sprite.svg';
+import { routes } from 'routes/routes';
 
 const UserSchema = Yup.object().shape({
   email: Yup.string()
@@ -36,7 +37,7 @@ export default function LoginForm() {
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
-        navigate('/home');
+        navigate(routes.HOMEPAGE);
       })
       .catch(error => {
         console.log(error);
