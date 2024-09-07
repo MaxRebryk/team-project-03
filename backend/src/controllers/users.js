@@ -5,7 +5,7 @@ import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 import { env } from '../utils/env.js';
 
 export const getUserInfoByIdController = async (req, res, next) => {
-  const { userId } = req.params;
+  const { _id: userId } = req.user; // отримуємо id
   const user = await getUserInfoById(userId);
 
   if (!user) {

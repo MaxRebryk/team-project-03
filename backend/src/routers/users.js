@@ -15,7 +15,7 @@ const router = Router();
 
 router.use(authenticate);
 
-router.get('/:userId/info', isValidId, ctrlWrapper(getUserInfoByIdController));
+router.get('/info', isValidId, ctrlWrapper(getUserInfoByIdController));
 
 router.post(
   '/:userId/info/photo',
