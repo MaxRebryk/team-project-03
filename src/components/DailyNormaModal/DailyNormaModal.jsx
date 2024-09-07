@@ -41,7 +41,7 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
       window.removeEventListener('keydown', onWindowKeydown);
       enableBody();
     };
-  }, [onWindowKeydown]);
+  }, [isOpen, onWindowKeydown]);
 
   if (!isOpen) {
     return;
